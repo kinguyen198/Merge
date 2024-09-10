@@ -181,15 +181,15 @@ public func _withLogicalParent<Parent, Result>(
             
             let result: Result = try operation()
             
-            if parent != nil {
-                if let mirror = InstanceMirror(result) {
-                    mirror._smartForEachField(ofPropertyWrapperType: (any _TaskDependenciesConsuming).self) { element in
-                        #try(.optimistic) {
-                            try element.__consume(TaskDependencies.current)
-                        }
-                    }
-                }
-            }
+            // if parent != nil {
+            //     if let mirror = InstanceMirror(result) {
+            //         mirror._smartForEachField(ofPropertyWrapperType: (any _TaskDependenciesConsuming).self) { element in
+            //             #try(.optimistic) {
+            //                 try element.__consume(TaskDependencies.current)
+            //             }
+            //         }
+            //     }
+            // }
             
             return result
         }
