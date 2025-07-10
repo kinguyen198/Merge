@@ -5,9 +5,9 @@ import PackageDescription
 var package = Package(
     name: "Merge",
     platforms: [
-        .iOS(.v13),
-        .macOS(.v13),
-        .tvOS(.v13),
+        .iOS(.v14),
+        .macOS(.v14),
+        .tvOS(.v14),
         .watchOS(.v6),
     ],
     products: [
