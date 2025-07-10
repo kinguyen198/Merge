@@ -28,7 +28,7 @@ var package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/vmanot/Swallow.git", branch: "master"),
-        .package(url: "https://github.com/kinguyen198/swift-subprocessgit", branch: "main"),
+        .package(url: "https://github.com/kinguyen198/swift-subprocess", branch: "main"),
     ],
     targets: [
         // MARK: Core Logic (iOS-compatible)
