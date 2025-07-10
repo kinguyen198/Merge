@@ -12,14 +12,19 @@ var package = Package(
     ],
     products: [
         .library(
-            name: "Merge",
+            name: "MergeCore",
+            targets: [
+                "Merge",
+                "SwiftDI",
+            ]
+        ),
+        .library(
+            name: "MergeTooling",
             targets: [
                 "CommandLineToolSupport",
-                "ShellScripting",
-                "SwiftDI",
-                "Merge",
-            ],
-        )
+                "ShellScripting"
+            ]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/vmanot/Swallow.git", branch: "master"),
@@ -38,7 +43,20 @@ var package = Package(
             ]
         ),
         .target(
-            name: "Merge",
+            name: "MergeCore",
+            dependencies: [
+                "Swallow",
+                .product(name: "SwallowMacrosClient", package: "Swallow"),
+                "SwiftDI",
+            ],
+            path: "Sources/Merge",
+            swiftSettings: [
+                .enableExperimentalFeature("AccessLevelOnImport"),
+                .swiftLanguageMode(.v5),
+            ]
+        ),
+        .target(
+            name: "MergeTooling",
             dependencies: [
                 "Swallow",
                 .product(name: "SwallowMacrosClient", package: "Swallow"),
