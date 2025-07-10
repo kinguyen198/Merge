@@ -15,7 +15,6 @@ var package = Package(
             name: "Merge",
             targets: [
                 "CommandLineToolSupport",
-                "ShellScripting",
                 "SwiftDI",
                 "Merge",
             ],
@@ -50,21 +49,9 @@ var package = Package(
             ]
         ),
         .target(
-            name: "ShellScripting",
-            dependencies: [
-                "Merge",
-            ],
-            path: "Sources/ShellScripting",
-            swiftSettings: [
-                .enableExperimentalFeature("AccessLevelOnImport"),
-                .swiftLanguageMode(.v5),
-            ]
-        ),
-        .target(
             name: "CommandLineToolSupport",
             dependencies: [
                 "Merge",
-                "ShellScripting",
                 "Swallow",
             ],
             path: "Sources/CommandLineToolSupport",
@@ -78,7 +65,6 @@ var package = Package(
             dependencies: [
                 "CommandLineToolSupport",
                 "Merge",
-                "ShellScripting",
             ],
             path: "Tests",
             swiftSettings: [
