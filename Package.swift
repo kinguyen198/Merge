@@ -12,14 +12,14 @@ var package = Package(
     ],
     products: [
         .library(
-            name: "MergeCore",
+            name: "MergeCore", // iOS-compatible
             targets: [
                 "Merge",
-                "SwiftDI",
+                "SwiftDI"
             ]
         ),
         .library(
-            name: "MergeTooling",
+            name: "MergeTooling", // Only for macOS/CLI use
             targets: [
                 "CommandLineToolSupport",
                 "ShellScripting"
@@ -31,6 +31,7 @@ var package = Package(
         .package(url: "https://github.com/kinguyen198/swift-subprocessgit", branch: "main"),
     ],
     targets: [
+        // MARK: Core Logic (iOS-compatible)
         .target(
             name: "SwiftDI",
             dependencies: [
@@ -43,11 +44,11 @@ var package = Package(
             ]
         ),
         .target(
-            name: "MergeCore",
+            name: "Merge",
             dependencies: [
                 "Swallow",
                 .product(name: "SwallowMacrosClient", package: "Swallow"),
-                "SwiftDI",
+                "SwiftDI"
             ],
             path: "Sources/Merge",
             swiftSettings: [
@@ -55,23 +56,11 @@ var package = Package(
                 .swiftLanguageMode(.v5),
             ]
         ),
-        .target(
-            name: "MergeTooling",
-            dependencies: [
-                "Swallow",
-                .product(name: "SwallowMacrosClient", package: "Swallow"),
-                "SwiftDI",
-            ],
-            path: "Sources/Merge",
-            swiftSettings: [
-                .enableExperimentalFeature("AccessLevelOnImport"),
-                .swiftLanguageMode(.v5),
-            ]
-        ),
+
+        // MARK: Tooling (macOS only)
         .target(
             name: "ShellScripting",
             dependencies: [
-                "Merge",
                 .product(name: "Subprocess", package: "swift-subprocess"),
             ],
             path: "Sources/ShellScripting",
@@ -83,9 +72,8 @@ var package = Package(
         .target(
             name: "CommandLineToolSupport",
             dependencies: [
-                "Merge",
                 "ShellScripting",
-                "Swallow",
+                "Swallow"
             ],
             path: "Sources/CommandLineToolSupport",
             swiftSettings: [
@@ -93,12 +81,13 @@ var package = Package(
                 .swiftLanguageMode(.v5),
             ]
         ),
+
+        // MARK: Tests
         .testTarget(
             name: "MergeTests",
             dependencies: [
-                "CommandLineToolSupport",
                 "Merge",
-                "ShellScripting",
+                "SwiftDI"
             ],
             path: "Tests",
             swiftSettings: [
