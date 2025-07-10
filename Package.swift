@@ -23,7 +23,7 @@ var package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/vmanot/Swallow.git", branch: "master"),
-        .package(url: "https://github.com/kinguyen198/swift-subprocessgit", revision: "cbbb2b2dc9daf0a8a996df46e7ff77043dcf6234"),
+        .package(url: "https://github.com/kinguyen198/swift-subprocessgit", branch: "main"),
     ],
     targets: [
         .target(
