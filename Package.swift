@@ -53,7 +53,6 @@ var package = Package(
             name: "ShellScripting",
             dependencies: [
                 "Merge",
-                .product(name: "Subprocess", package: "swift-subprocess"),
             ],
             path: "Sources/ShellScripting",
             swiftSettings: [
